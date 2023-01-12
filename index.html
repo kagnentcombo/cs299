@@ -97,7 +97,7 @@
         scene.add(model.scene); //add to scene.
       });
 
-      gltfLoader.load('pum/scene.gltf', function (model) {
+      gltfLoader.load('pum/scene.gltf', function (model) { //loader
         pum = model.scene.children[1];
         pum.scale.set(3, 3, 3);
         pum.position.set(-15, -6, -23.5);
