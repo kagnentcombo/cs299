@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=UTF-8 />
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+
+</head>
+
+<body>
+  <div class="text-box">
+    <div class="=heading"></div>
+  </div id="app">
+  <div id="welcome">Happy Halloween
+<p style="font-size: 15px; text-align: center;">press b</p>
+</div>
+  <div id="press">
+    <p style="font-size: 15px;">  sound press C | light-pumpkin press V  </p>
+    
+  </div>
+  <script type="module">
+
+    //import
+    import * as THREE from './build/three.module.js';
+    import { OrbitControls } from './OrbitControls.js';
+    import { GLTFLoader } from './GLTFLoader.js';
+    import { ShadowMesh } from './ShadowMesh.js';
+
+    //set variable
+    let scene, camera, renderer, light, light1, light2, light3, light4, light5, stats, house, l, pum, ghost1, ghost2, ghost3, Mesh, ghostboss;
+    const clock = new THREE.Clock();
+    
+    function init() {
+
+      scene = new THREE.Scene();
+      scene.background = new THREE.CubeTextureLoader() //create skybox scene.
+        .setPath('photo/').load([
+          'front.png',
+          'back.png',
+          'top.png',
+          'bottom.png',
+          'left.png',
+          'right.png'
+        ]);
+      renderer = new THREE.WebGLRenderer(); //set variable renderer to show off your created scene.
+      renderer.setSize(window.innerWidth, window.innerHeight); //set size.
+      document.body.appendChild(renderer.domElement); //append
+
+      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000); //canera setting.
+      camera.position.set(10, 0, 10);
+      //camera.position.set(-2, -1, 5);
+      let controls = new OrbitControls(camera, renderer.domElement); // control  screen by mouse.
+
+      /*let ambientLight = new THREE.AmbientLight(0xaaaaaa); //This light globally illuminates all objects in the scene equally.
+      scene.add(ambientLight);*/
+
+      const sunLight = new THREE.DirectionalLight(0x990000, 1); //A light that gets emitted in a specific direction.
+      sunLight.position.set(-1, 10, -35);
+      scene.add(sunLight);
+
+      const sunLight2 = new THREE.DirectionalLight(0x660099, 2); //A light that gets emitted in a specific direction.
+      sunLight2.position.set(-25, -17, 30);
+      scene.add(sunLight2);
+
+      const color = 0xDFE9F3;  // white
+        const near = 0.005; 
+        const far = 1000;
+        scene.fog = new THREE.FogExp2(color, near, far); //create fog.
+
+
+      const sphere = new THREE.SphereGeometry(0.5, 16, 8); //create a sphere variable.
+
+      light1 = new THREE.PointLight(0xff0040, 2, 50); //A light that gets emitted from a single point in all directions.
+      light1.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xff0040 })));//Get the geometry value to adjust the material.
+      scene.add(light1);
+
+      light2 = new THREE.PointLight(0x0040ff, 2, 50);
+      light2.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x0040ff })));
+      scene.add(light2);
+
+      light3 = new THREE.PointLight(0x80ff80, 2, 50);
+      light3.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x80ff80 })));
+      scene.add(light3);
+
+      light4 = new THREE.PointLight(0xffaa00, 2, 50);
+      light4.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xffaa00 })));
+      scene.add(light4);
+
+      window.addEventListener('resize', onWindowResize); //set up the event handler.
+
+      let gltfLoader = new GLTFLoader(); //Create variables for uploading gltf files.
+
+      gltfLoader.load('house/scene.gltf', function (model) { //Upload files gltf.
+        house = model.scene.children[0];
+        house.scale.set(5, 5, 5); //set scale.
+        house.position.set(-20, -10, 30); //set position.
+        scene.add(model.scene); //add to scene.
+      });
+
+      gltfLoader.load('pum/scene.gltf', function (model) {
+        pum = model.scene.children[1];
+        pum.scale.set(3, 3, 3);
+        pum.position.set(-15, -6, -23.5);
+        scene.add(model.scene);
+
+      });
+
+      gltfLoader.load('ghost/scene.gltf', function (model) {
+        ghost1 = model.scene.children[0];
+        scene.add(model.scene);
+      });
+      gltfLoader.load('ghost/scene.gltf', function (model) {
+        ghost2 = model.scene.children[0];
+        scene.add(model.scene);
+      });
+      gltfLoader.load('ghost/scene.gltf', function (model) {
+        ghost3 = model.scene.children[0];
+        scene.add(model.scene);
+      });
+     /* gltfLoader.load('ghost2/scene.gltf', function (model) {
+        ghostboss = model.scene.children[0];
+        ghostboss.scale.set(0.1, 0.1, 0.1);
+        ghostboss.position.set(2, -10, -14);
+        scene.add(model.scene);
+
+      });*/
+      const geometry = new THREE.BoxGeometry(2, 2, 2); //create Square variable.
+      const material = new THREE.MeshPhongMaterial({ color: 0xffff00, emissive: 0x000020 }); //material setting
+      Mesh = new THREE.Mesh(geometry, material); //create Box Geometry.
+      Mesh.position.set(-10, -6, -38.5); //set position.
+      scene.add(Mesh); //add to scene.
+
+
+
+
+      light = new THREE.PointLight(0xFF9900, 10, 10); //create variable light 
+      light.position.set(-14, -5, -25);
+      scene.add(light);
+      scene.children[scene.children.length - 1].name = "swich";//Defines the name of the last value stored in scene.children .
+
+      document.addEventListener('keydown', function (event) {
+        if (scene.children[scene.children.length - 1].name == "swich") { //if the name of the last value stored in scene.children equal swich.
+          if (event.key === 'v') { //if press v.
+            scene.remove(light);  //remove light ==> off
+            
+          }
+        }
+        else if (scene.children[scene.children.length - 1].name != "swich") {//if the name of the last value stored in scene.children not equal swich.
+          if (event.key === 'v') {
+            scene.add(light); //add light ==> on
+            
+          }
+        }
+        
+      });
+
+
+
+      const listener = new THREE.AudioListener();// create an AudioListener and add it to the camera.
+      camera.add(listener);
+
+      // create an Audio source
+      const sound = new THREE.Audio(listener);
+      console.log(scene.children[7]);
+      // load a sound and set it as the Audio object's buffer.
+      const audioLoader = new THREE.AudioLoader();
+      // load a sound and set it as the Audio object's buffer.
+      audioLoader.load('sound/sound.ogg', function (buffer) {
+        sound.setBuffer(buffer); //set buffer.
+        sound.setLoop(true); //set loop.
+        sound.setVolume(0.5); //set volume.
+        sound.play(); //start playing sound.
+        document.addEventListener('keydown', function (event) {
+          if (!sound.isPlaying) { //If the sound is not playing
+            if (event.key === 'c') { //if press c.
+              sound.play(); //start playing sound.
+
+            }
+          }
+          else if (sound.isPlaying) { //If the sound is playing.
+            if (event.key === 'c') {
+              sound.pause(); //pause sound
+            }
+            if(event.key === 'b') {
+          document.getElementById('welcome').innerHTML = "";
+            }
+          }
+          
+
+        });
+      });
+
+
+      animate(); //call animate function.
+
+    }
+
+    function onWindowResize() {
+
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+
+    }
+    function animate() {
+      renderer.render(scene, camera); //Render a scene or another type of object using a camera.
+      //you wish to perform an animation and requests that the browser calls a specified function to update an animation.
+      requestAnimationFrame(animate);
+      render();//call render function.
+      Mesh.rotation.y += 0.005;//spin the Mesh on the y axis.
+    }
+    function render() {
+
+      const time = Date.now() * 0.0005; //set time.
+      const delta = clock.getDelta(); // set delta.
+
+
+
+      if (pum) pum.rotation.y -= 0.5 * delta; //spin the pumpkin on the y axis
+      //Set the position for the object to move.
+      ghost1.position.x = Math.sin(time * 0.6) * 30;
+      ghost1.position.y = Math.cos(time * 0.5) * 40;
+      ghost1.position.z = Math.cos(time * 0.4) * 30;
+
+      ghost2.position.x = Math.cos(time * 0.5) * 30;
+      ghost2.position.y = Math.sin(time * 0.4) * 40;
+      ghost2.position.z = Math.sin(time * 0.6) * 30;
+
+      ghost3.position.x = Math.sin(time * 0.4) * 30;
+      ghost3.position.y = Math.cos(time * 0.6) * 40;
+      ghost3.position.z = Math.sin(time * 0.5) * 30;
+
+      light1.position.x = Math.sin(time * 0.7) * 30;
+      light1.position.y = Math.cos(time * 0.5) * 40;
+      light1.position.z = Math.cos(time * 0.3) * 30;
+
+      light2.position.x = Math.cos(time * 0.3) * 30;
+      light2.position.y = Math.sin(time * 0.5) * 40;
+      light2.position.z = Math.sin(time * 0.7) * 30;
+
+      light3.position.x = Math.sin(time * 0.7) * 30;
+      light3.position.y = Math.cos(time * 0.3) * 40;
+      light3.position.z = Math.sin(time * 0.5) * 30;
+
+      light4.position.x = Math.sin(time * 0.3) * 30;
+      light4.position.y = Math.cos(time * 0.7) * 40;
+      light4.position.z = Math.sin(time * 0.5) * 30;
+
+      
+
+    }
+    init(); // call init function for rum.
+  </script>
+</body>
+
+</html>

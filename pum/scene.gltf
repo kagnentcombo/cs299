@@ -1,0 +1,131 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.6.16",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0,
+                1
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Sphere",
+            "translation" : [
+                0,
+                1.038470983505249,
+                0
+            ]
+        },
+        {
+            "name" : "Point",
+            "translation" : [
+                0,
+                0.46971839666366577,
+                0
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "Material.001",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.8000000715255737,
+                    0.17979750037193298,
+                    0.045942410826683044,
+                    1
+                ],
+                "metallicFactor" : 0.2647058963775635,
+                "roughnessFactor" : 0.38235294818878174
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Sphere",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 63360,
+            "max" : [
+                1.1802419424057007,
+                1.1978156566619873,
+                1.2276475429534912
+            ],
+            "min" : [
+                -1.2032769918441772,
+                -1.0321003198623657,
+                -1.242116928100586
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 63360,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 63360,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 287628,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 760320,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 760320,
+            "byteOffset" : 760320
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 506880,
+            "byteOffset" : 1520640
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 575256,
+            "byteOffset" : 2027520
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 2602776,
+            "uri" : "scene.bin"
+        }
+    ]
+}

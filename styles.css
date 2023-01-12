@@ -1,0 +1,25 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background: black;
+  overflow: hidden;
+}
+#welcome {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 60px;
+  color: rebeccapurple;
+  transform: translate(-50%,-50%);
+  font-family: sans-serif;
+}
+#press {
+  position: absolute;
+  left: 82%;
+  top: 95%;
+  font-size: 20px;
+  color: rebeccapurple;
+  transform: translate(-50%,-50%);
+  font-family: sans-serif;
+}

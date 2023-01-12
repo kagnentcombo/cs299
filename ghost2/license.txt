@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ghost Girl Animated
+* source:	https://sketchfab.com/3d-models/ghost-girl-animated-1091b3ee172f4951aaeafa2581f9de1d
+* author:	Shaban Hafizsalim (https://sketchfab.com/shabaninteractive)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ghost Girl Animated" (https://sketchfab.com/3d-models/ghost-girl-animated-1091b3ee172f4951aaeafa2581f9de1d) by Shaban Hafizsalim (https://sketchfab.com/shabaninteractive) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
